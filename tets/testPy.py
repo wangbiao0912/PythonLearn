@@ -2,7 +2,7 @@
 import requests
 import itchat
 
-KEY = '8edce3ce905a4c1dbb965e6b35c3834d'
+KEY = '39256edfb8e314b54e57f44a8fe880ca'
 
 def get_response(msg):
     # 这里我们就像在“3. 实现最简单的与图灵机器人的交互”中做的一样
@@ -29,7 +29,7 @@ def tuling_reply(msg):
     # 为了保证在图灵Key出现问题的时候仍旧可以回复，这里设置一个默认回复
     defaultReply = 'I received: ' + msg['Text']
     # 如果图灵Key出现问题，那么reply将会是None
-    reply = get_response(msg['Text'])
+    reply = get_response(msg['Text'])+"【机器人回复】"
     # a or b的意思是，如果a有内容，那么返回a，否则返回b
     # 有内容一般就是指非空或者非None，你可以用`if a: print('True')`来测试
     return reply or defaultReply
@@ -37,14 +37,14 @@ def tuling_reply(msg):
 # 接收到语音的消息
 @itchat.msg_register(itchat.content.RECORDING)
 def yuyinMsg(msg):
-    returnMsg = '不要发语音消息'
+    returnMsg = '不要发语音消息【机器人回复】'
     print(msg)
     return returnMsg
 
 # 接收到图片消息的消息
 @itchat.msg_register(itchat.content.PICTURE)
 def yuyinMsg(msg):
-    returnMsg = '不要发图片'
+    returnMsg = '不要发图片【机器人回复】'
     print(msg)
     return returnMsg
 # 为了让实验过程更加方便（修改程序不用多次扫码），我们使用热启动
